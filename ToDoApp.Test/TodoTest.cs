@@ -50,5 +50,13 @@ namespace ToDoApp.Test
             bool done = toDoItem.Done;
             Assert.AreEqual(false, done);
         }
+
+        [TestMethod]
+        public void タスクの完了状態を変更できる()
+        {
+            var toDoItem = new ToDoItem("x");
+            toDoItem.Done = true;
+            Assert.IsTrue(toDoItem.Done);
+        }
     }
 }
