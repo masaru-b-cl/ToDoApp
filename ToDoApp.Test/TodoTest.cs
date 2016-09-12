@@ -25,6 +25,29 @@ namespace ToDoApp.Test
     }
 
     [TestClass]
+    public class 完了タスク件数
+    {
+        [TestMethod]
+        public void 完了タスクがなければ0件()
+        {
+            var todo = new ToDo();
+            todo.AddTask("x");
+            int doneCount = todo.DoneCount;
+            Assert.AreEqual(0, doneCount);
+        }
+
+        [TestMethod]
+        public void 完了タスクがあればその件数()
+        {
+            var todo = new ToDo();
+            todo.AddTask("x");
+            todo[0].Done = true;
+            int doneCount = todo.DoneCount;
+            Assert.AreEqual(1, doneCount);
+        }
+    }
+
+    [TestClass]
     public class タスク追加
     {
         [TestMethod]

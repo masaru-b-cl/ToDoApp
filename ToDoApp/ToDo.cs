@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using System.Collections.Generic;
 
 namespace ToDoApp
@@ -13,6 +13,14 @@ namespace ToDoApp
             get
             {
                 return items.Count;
+            }
+        }
+
+        public int DoneCount
+        {
+            get
+            {
+                return items.Count(item => item.Done);
             }
         }
 
