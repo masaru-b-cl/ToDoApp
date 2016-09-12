@@ -59,6 +59,21 @@ namespace ToDoApp.Test
             string content = toDoItem.Content;
             Assert.AreEqual("x", content);
         }
+
+        [TestMethod]
+        public void タスク内容が空は追加できない()
+        {
+            try
+            {
+                var todo = new ToDo();
+                todo.AddTask("");
+
+                Assert.Fail();
+            }
+            catch (ArgumentException)
+            {
+            }
+        }
     }
 
     [TestClass]

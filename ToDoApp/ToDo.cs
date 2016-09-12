@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace ToDoApp
@@ -30,6 +31,8 @@ namespace ToDoApp
 
         public void AddTask(string content)
         {
+            if (string.IsNullOrWhiteSpace(content)) throw new ArgumentException("not allow empty or whitespace.", nameof(content));
+
             items.Add(new ToDoItem(content));
         }
 
