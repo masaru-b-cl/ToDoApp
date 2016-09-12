@@ -37,4 +37,18 @@ namespace ToDoApp.Test
             Assert.AreEqual("x", content);
         }
     }
+
+    [TestClass]
+    public class タスク完了状態
+    {
+        [TestMethod]
+        public void 追加直後のタスクは未完了()
+        {
+            var todo = new ToDo();
+            todo.AddTask("x");
+            ToDoItem toDoItem = todo[0];
+            bool done = toDoItem.Done;
+            Assert.AreEqual(false, done);
+        }
+    }
 }

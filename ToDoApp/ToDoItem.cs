@@ -16,5 +16,7 @@
                 return content;
             }
         }
+
+        public bool Done { get; set; }
     }
 }
