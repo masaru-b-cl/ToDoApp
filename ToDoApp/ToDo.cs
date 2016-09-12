@@ -5,13 +5,14 @@ namespace ToDoApp
 {
     public class ToDo
     {
-        private List<string> tasks = new List<string>();
+        private List<ToDoItem> items = new List<ToDoItem>();
+
 
         public int Count
         {
             get
             {
-                return tasks.Count;
+                return items.Count;
             }
         }
 
@@ -19,9 +20,17 @@ namespace ToDoApp
         {
         }
 
-        public void AddTask(string taskText)
+        public void AddTask(string content)
         {
-            tasks.Add(taskText);
+            items.Add(new ToDoItem(content));
+        }
+
+        public ToDoItem this[int index]
+        {
+            get
+            {
+                return items[index];
+            }
         }
     }
 }

@@ -23,4 +23,18 @@ namespace ToDoApp.Test
             Assert.AreEqual(1, count);
         }
     }
+
+    [TestClass]
+    public class タスク追加
+    {
+        [TestMethod]
+        public void タスク内容を指定してタスクが追加できる()
+        {
+            var todo = new ToDo();
+            todo.AddTask("x");
+            ToDoItem toDoItem = todo[0];
+            string content = toDoItem.Content;
+            Assert.AreEqual("x", content);
+        }
+    }
 }
