@@ -103,6 +103,46 @@ namespace ToDoApp.Test
             int doneCount = todo.DoneCount;
             Assert.AreEqual(1, doneCount);
         }
+
+        [TestMethod]
+        public void タスクの完了状態を変更したら完了タスク件数の変更通知が行われる()
+        {
+            var todo = new ToDo();
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
+
+            var raised = false;
+            todo.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == nameof(todo.DoneCount)) raised = true;
+            };
+
+            todo[0].Done = true;
+
+            Assert.IsTrue(raised);
+        }
+
+        [TestMethod]
+        public void 削除したタスクの完了タスク件数の変更通知は行われない()
+        {
+            var todo = new ToDo();
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
+
+            var raised = false;
+            todo.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == nameof(todo.DoneCount)) raised = true;
+            };
+
+            var toDoItem = todo[0];
+
+            todo.RemoveTask(0);
+
+            toDoItem.Done = true;
+
+            Assert.IsFalse(raised);
+        }
     }
 
     [TestClass]

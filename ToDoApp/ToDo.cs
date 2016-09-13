@@ -12,6 +12,11 @@ namespace ToDoApp
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public int Count
         {
             get
@@ -58,16 +63,23 @@ namespace ToDoApp
             }
         }
 
-        private void OnPropertyChanged(string propertyName)
+        private void ItemPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (e.PropertyName == nameof(ToDoItem.Done))
+            {
+                OnPropertyChanged(nameof(DoneCount));
+            }
         }
 
         public void AddTask()
         {
             if (string.IsNullOrWhiteSpace(AddingTaskContent)) throw new InvalidOperationException($"{nameof(AddingTaskContent)} is not allow empty.");
 
-            items.Add(new ToDoItem(AddingTaskContent));
+            var toDoItem = new ToDoItem(AddingTaskContent);
+
+            toDoItem.PropertyChanged += ItemPropertyChanged;
+
+            items.Add(toDoItem);
 
             OnPropertyChanged(nameof(Count));
 
@@ -84,7 +96,11 @@ namespace ToDoApp
 
         public void RemoveTask(int index)
         {
-            items.RemoveAt(index);
+            var toDoItem = items[index];
+
+            toDoItem.PropertyChanged -= ItemPropertyChanged;
+
+            items.Remove(toDoItem);
 
             OnPropertyChanged(nameof(Count));
         }
