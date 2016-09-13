@@ -105,6 +105,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button2.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.toDoBindingSource, "CanClear", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.button2.Location = new System.Drawing.Point(13, 387);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(46, 23);
