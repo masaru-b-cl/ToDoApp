@@ -111,6 +111,7 @@ namespace ToDoApp
             items.Clear();
 
             OnPropertyChanged(nameof(Count));
+            OnPropertyChanged(nameof(DoneCount));
         }
 
         public IEnumerator<ToDoItem> GetEnumerator()
