@@ -123,7 +123,7 @@ namespace ToDoApp.Test
         }
 
         [TestMethod]
-        public void 削除したタスクの完了タスク件数の変更通知は行われない()
+        public void タスクを削除したら完了タスク件数の変更通知が行われる()
         {
             var todo = new ToDo();
             todo.AddingTaskContent = "x";
@@ -135,13 +135,9 @@ namespace ToDoApp.Test
                 if (e.PropertyName == nameof(todo.DoneCount)) raised = true;
             };
 
-            var toDoItem = todo[0];
-
             todo.RemoveTask(0);
 
-            toDoItem.Done = true;
-
-            Assert.IsFalse(raised);
+            Assert.IsTrue(raised);
         }
     }
 

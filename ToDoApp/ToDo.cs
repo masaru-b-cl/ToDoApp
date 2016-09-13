@@ -103,6 +103,7 @@ namespace ToDoApp
             items.Remove(toDoItem);
 
             OnPropertyChanged(nameof(Count));
+            OnPropertyChanged(nameof(DoneCount));
         }
 
         public void Clear()
