@@ -42,13 +42,16 @@ namespace ToDoApp
         private void ToDoForm_Load(object sender, EventArgs e)
         {
             toDoBindingSource.DataSource = toDo;
+            toDoItemBindingSource.DataSource = toDo.Items;
 
             SetTitle();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             toDo.AddTask();
+            toDoItemBindingSource.ResetBindings(false);
         }
     }
 }

@@ -10,6 +10,14 @@ namespace ToDoApp
     {
         private List<ToDoItem> items = new List<ToDoItem>();
 
+        public IReadOnlyList<ToDoItem> Items
+        {
+            get
+            {
+                return items;
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string propertyName)
