@@ -54,12 +54,7 @@ namespace ToDoApp
             }
             set
             {
-                if (addingTaskContent != value)
-                {
-                    addingTaskContent = value;
-
-                    OnPropertyChanged(nameof(ToDo.ContainsSameTask));
-                }
+                addingTaskContent = value;
             }
         }
 

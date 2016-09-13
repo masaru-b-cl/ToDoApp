@@ -217,44 +217,6 @@ namespace ToDoApp.Test
 
             Assert.IsFalse(todo.ContainsSameTask);
         }
-
-        [TestMethod]
-        public void 追加中タスク内容を設定したら同一タスク有無の変更通知が行われる()
-        {
-            var todo = new ToDo();
-            todo.AddingTaskContent = "x";
-            todo.AddTask();
-
-            var raised = false;
-            todo.PropertyChanged += (sender, e) =>
-            {
-                if (e.PropertyName == nameof(todo.ContainsSameTask)) raised = true;
-            };
-
-            todo.AddingTaskContent = "x";
-
-            Assert.IsTrue(raised);
-        }
-
-        [TestMethod]
-        public void 追加中タスク内容が変更されなければ同一タスク有無の変更通知は行われない()
-        {
-            var todo = new ToDo();
-            todo.AddingTaskContent = "x";
-            todo.AddTask();
-
-            todo.AddingTaskContent = "x";
-
-            var raised = false;
-            todo.PropertyChanged += (sender, e) =>
-            {
-                if (e.PropertyName == nameof(todo.ContainsSameTask)) raised = true;
-            };
-
-            todo.AddingTaskContent = "x";
-
-            Assert.IsFalse(raised);
-        }
     }
 
     [TestClass]
