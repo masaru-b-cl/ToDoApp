@@ -92,13 +92,22 @@ namespace ToDoApp
             switch (e.KeyCode)
             {
                 case Keys.Space:
-                    var item = (ToDoItem)toDoItemBindingSource.Current;
+                    var item = toDo[dataGridView1.CurrentRow.Index];
                     item.Done = !item.Done;
                     break;
 
                 default:
                     break;
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            if (e.ColumnIndex != 2) return;
+
+            toDo.RemoveTask(e.RowIndex);
+            toDoItemBindingSource.ResetBindings(false);
         }
     }
 }
