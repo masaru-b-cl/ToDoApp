@@ -89,6 +89,13 @@ namespace ToDoApp
             OnPropertyChanged(nameof(Count));
         }
 
+        public void Clear()
+        {
+            items.Clear();
+
+            OnPropertyChanged(nameof(Count));
+        }
+
         public IEnumerator<ToDoItem> GetEnumerator()
         {
             return items.GetEnumerator();
@@ -105,11 +112,6 @@ namespace ToDoApp
             {
                 return items.Any();
             }
-        }
-
-        public void Clear()
-        {
-            items.Clear();
         }
     }
 }
