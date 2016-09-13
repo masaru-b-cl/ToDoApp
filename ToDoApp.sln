@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApp", "ToDoApp\ToDoApp.csproj", "{5DFDAFFA-EB3E-434D-B507-485B9CEDFEFF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApp.Test", "ToDoApp.Test\ToDoApp.Test.csproj", "{33E4D943-47DF-4763-904F-4A87A3FA4BDD}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{74FBB029-9CC3-4294-B788-812CB888D1B6}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoModel", "ToDoModel\ToDoModel.csproj", "{720C8E0C-C492-430E-BCAE-48EBA79D04A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoModel.Test", "ToDoModel.Test\ToDoModel.Test.csproj", "{33E4D943-47DF-4763-904F-4A87A3FA4BDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoFormApp", "ToDoFormApp\ToDoFormApp.csproj", "{5DFDAFFA-EB3E-434D-B507-485B9CEDFEFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +21,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5DFDAFFA-EB3E-434D-B507-485B9CEDFEFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5DFDAFFA-EB3E-434D-B507-485B9CEDFEFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5DFDAFFA-EB3E-434D-B507-485B9CEDFEFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5DFDAFFA-EB3E-434D-B507-485B9CEDFEFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{720C8E0C-C492-430E-BCAE-48EBA79D04A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{720C8E0C-C492-430E-BCAE-48EBA79D04A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{720C8E0C-C492-430E-BCAE-48EBA79D04A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{720C8E0C-C492-430E-BCAE-48EBA79D04A3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33E4D943-47DF-4763-904F-4A87A3FA4BDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{33E4D943-47DF-4763-904F-4A87A3FA4BDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33E4D943-47DF-4763-904F-4A87A3FA4BDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33E4D943-47DF-4763-904F-4A87A3FA4BDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DFDAFFA-EB3E-434D-B507-485B9CEDFEFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DFDAFFA-EB3E-434D-B507-485B9CEDFEFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DFDAFFA-EB3E-434D-B507-485B9CEDFEFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DFDAFFA-EB3E-434D-B507-485B9CEDFEFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

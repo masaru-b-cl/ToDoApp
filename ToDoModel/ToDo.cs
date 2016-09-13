@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.ComponentModel;
 
-namespace ToDoApp
+namespace ToDoModel
 {
     public class ToDo : INotifyPropertyChanged
     {

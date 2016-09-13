@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ToDoApp
+using ToDoModel;
+
+namespace ToDoFormApp
 {
     public partial class ToDoForm : Form
     {
@@ -45,11 +47,17 @@ namespace ToDoApp
             toDoItemBindingSource.DataSource = toDo.Items;
 
             SetTitle();
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            AddTask();
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+
             AddTask();
         }
 
@@ -66,6 +74,7 @@ namespace ToDoApp
             textBox1.Focus();
         }
 
+
         private void dataGridView1_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentCellAddress.X == 0 && dataGridView1.CurrentCellAddress.Y != -1)
@@ -75,14 +84,6 @@ namespace ToDoApp
                     dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
             }
-        }
-
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode != Keys.Enter) return;
-
-            AddTask();
-
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)

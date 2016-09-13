@@ -3,7 +3,7 @@ using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace ToDoApp.Test
+namespace ToDoModel.Test
 {
     [TestClass]
     public class タスク件数

@@ -1,4 +1,4 @@
-﻿namespace ToDoApp
+﻿namespace ToDoFormApp
 {
     partial class ToDoForm
     {
@@ -117,7 +117,7 @@
             // 
             // toDoBindingSource
             // 
-            this.toDoBindingSource.DataSource = typeof(ToDoApp.ToDo);
+            this.toDoBindingSource.DataSource = typeof(ToDoModel.ToDo);
             // 
             // doneDataGridViewCheckBoxColumn
             // 
@@ -137,7 +137,7 @@
             // 
             // toDoItemBindingSource
             // 
-            this.toDoItemBindingSource.DataSource = typeof(ToDoApp.ToDoItem);
+            this.toDoItemBindingSource.DataSource = typeof(ToDoModel.ToDoItem);
             // 
             // ToDoForm
             // 

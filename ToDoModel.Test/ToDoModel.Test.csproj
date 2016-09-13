@@ -56,9 +56,9 @@
     <Compile Include="TodoTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ToDoApp\ToDoApp.csproj">
-      <Project>{5DFDAFFA-EB3E-434D-B507-485B9CEDFEFF}</Project>
-      <Name>ToDoApp</Name>
+    <ProjectReference Include="..\ToDoModel\ToDoModel.csproj">
+      <Project>{720C8E0C-C492-430E-BCAE-48EBA79D04A3}</Project>
+      <Name>ToDoModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
