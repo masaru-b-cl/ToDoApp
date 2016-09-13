@@ -189,4 +189,27 @@ namespace ToDoApp.Test
 
         }
     }
+
+    [TestClass]
+    public class タスククリア
+    {
+        [TestMethod]
+        public void 初期状態はクリア不可()
+        {
+            var todo = new ToDo();
+
+            Assert.IsFalse(todo.CanClear);
+        }
+
+        [TestMethod]
+        public void タスク追加したらクリア可能()
+        {
+            var todo = new ToDo();
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
+
+            Assert.IsTrue(todo.CanClear);
+        }
+
+    }
 }

@@ -71,5 +71,13 @@ namespace ToDoApp
         {
             return this.GetEnumerator();
         }
+
+        public bool CanClear
+        {
+            get
+            {
+                return items.Any();
+            }
+        }
     }
 }
