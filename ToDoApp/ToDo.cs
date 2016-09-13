@@ -79,5 +79,10 @@ namespace ToDoApp
                 return items.Any();
             }
         }
+
+        public void Clear()
+        {
+            items.Clear();
+        }
     }
 }

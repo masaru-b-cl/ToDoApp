@@ -211,5 +211,16 @@ namespace ToDoApp.Test
             Assert.IsTrue(todo.CanClear);
         }
 
+        [TestMethod]
+        public void タスクをクリアできる()
+        {
+            var todo = new ToDo();
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
+
+            todo.Clear();
+
+            Assert.AreEqual(0, todo.Count);
+        }
     }
 }
