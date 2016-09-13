@@ -366,5 +366,58 @@ namespace ToDoApp.Test
 
             Assert.AreEqual(0, todo.Count);
         }
+
+        [TestMethod]
+        public void タスクを追加したらクリア可否の変更通知が行われる()
+        {
+            var todo = new ToDo();
+            todo.AddingTaskContent = "x";
+
+            var raised = false;
+            todo.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == nameof(todo.CanClear)) raised = true;
+            };
+
+            todo.AddTask();
+
+            Assert.IsTrue(raised);
+        }
+
+        [TestMethod]
+        public void タスクを削除したらクリア可否の変更通知が行われる()
+        {
+            var todo = new ToDo();
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
+
+            var raised = false;
+            todo.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == nameof(todo.CanClear)) raised = true;
+            };
+
+            todo.RemoveTask(0);
+
+            Assert.IsTrue(raised);
+        }
+
+        [TestMethod]
+        public void タスクをクリアしたらクリア可否の変更通知が行われる()
+        {
+            var todo = new ToDo();
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
+
+            var raised = false;
+            todo.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == nameof(todo.CanClear)) raised = true;
+            };
+
+            todo.Clear();
+
+            Assert.IsTrue(raised);
+        }
     }
 }

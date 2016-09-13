@@ -82,6 +82,7 @@ namespace ToDoApp
             items.Add(toDoItem);
 
             OnPropertyChanged(nameof(Count));
+            OnPropertyChanged(nameof(CanClear));
 
             AddingTaskContent = null;
         }
@@ -104,6 +105,7 @@ namespace ToDoApp
 
             OnPropertyChanged(nameof(Count));
             OnPropertyChanged(nameof(DoneCount));
+            OnPropertyChanged(nameof(CanClear));
         }
 
         public void Clear()
@@ -112,6 +114,7 @@ namespace ToDoApp
 
             OnPropertyChanged(nameof(Count));
             OnPropertyChanged(nameof(DoneCount));
+            OnPropertyChanged(nameof(CanClear));
         }
 
         public IEnumerator<ToDoItem> GetEnumerator()
