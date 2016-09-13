@@ -120,5 +120,11 @@ namespace ToDoApp
             toDo.RemoveTask(index);
             toDoItemBindingSource.ResetBindings(false);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            toDo.Clear();
+            toDoItemBindingSource.ResetBindings(false);
+        }
     }
 }
