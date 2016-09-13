@@ -50,6 +50,11 @@ namespace ToDoApp
 
         private void button1_Click(object sender, EventArgs e)
         {
+            AddTask();
+        }
+
+        private void AddTask()
+        {
             if (toDo.ContainsSameTask)
             {
                 if (MessageBox.Show("同じタスクが既に登録されています。本当に追加しますか？", "ToDoリスト", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
@@ -57,6 +62,8 @@ namespace ToDoApp
 
             toDo.AddTask();
             toDoItemBindingSource.ResetBindings(false);
+
+            textBox1.Focus();
         }
 
         private void dataGridView1_CurrentCellDirtyStateChanged(object sender, EventArgs e)
@@ -68,6 +75,14 @@ namespace ToDoApp
                     dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
             }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+
+            AddTask();
+
         }
     }
 }
