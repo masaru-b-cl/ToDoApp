@@ -10,7 +10,7 @@ namespace ToDoApp
     {
         private List<ToDoItem> items = new List<ToDoItem>();
 
-        public IEnumerable<ToDoItem> Items
+        public IReadOnlyList<ToDoItem> Items
         {
             get
             {
@@ -102,14 +102,6 @@ namespace ToDoApp
             OnPropertyChanged(nameof(CanClear));
 
             AddingTaskContent = null;
-        }
-
-        public ToDoItem this[int index]
-        {
-            get
-            {
-                return items[index];
-            }
         }
 
         public void RemoveTask(int index)

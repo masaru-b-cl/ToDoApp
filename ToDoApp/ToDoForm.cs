@@ -94,7 +94,7 @@ namespace ToDoApp
             {
                 case Keys.Space:
                     if (dataGridView1.CurrentCell.ColumnIndex == 0) return;
-                    var item = toDo[currentRowIndex];
+                    var item = toDo.Items[currentRowIndex];
                     var done = !item.Done;
                     dataGridView1[0, currentRowIndex].Value = done;
                     break;
@@ -135,7 +135,7 @@ namespace ToDoApp
             var taskCell = dataGridView1[1, e.RowIndex];
             var currentFont = taskCell.InheritedStyle.Font;
 
-            if (toDo[e.RowIndex].Done)
+            if (toDo.Items[e.RowIndex].Done)
             {
                 taskCell.Style.Font = new Font(currentFont, currentFont.Style | FontStyle.Strikeout);
             }

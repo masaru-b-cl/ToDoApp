@@ -99,7 +99,7 @@ namespace ToDoApp.Test
             var todo = new ToDo();
             todo.AddingTaskContent = "x";
             todo.AddTask();
-            todo[0].Done = true;
+            todo.Items[0].Done = true;
             int doneCount = todo.DoneCount;
             Assert.AreEqual(1, doneCount);
         }
@@ -117,7 +117,7 @@ namespace ToDoApp.Test
                 if (e.PropertyName == nameof(todo.DoneCount)) raised = true;
             };
 
-            todo[0].Done = true;
+            todo.Items[0].Done = true;
 
             Assert.IsTrue(raised);
         }
@@ -167,7 +167,7 @@ namespace ToDoApp.Test
             var todo = new ToDo();
             todo.AddingTaskContent = "x";
             todo.AddTask();
-            ToDoItem toDoItem = todo[0];
+            ToDoItem toDoItem = todo.Items[0];
             string content = toDoItem.Content;
             Assert.AreEqual("x", content);
         }
@@ -225,7 +225,7 @@ namespace ToDoApp.Test
             var todo = new ToDo();
             todo.AddingTaskContent = "x";
             todo.AddTask();
-            ToDoItem toDoItem = todo[0];
+            ToDoItem toDoItem = todo.Items[0];
             bool done = toDoItem.Done;
             Assert.AreEqual(false, done);
         }
