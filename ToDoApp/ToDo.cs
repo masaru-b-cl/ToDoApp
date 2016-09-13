@@ -43,5 +43,10 @@ namespace ToDoApp
                 return items[index];
             }
         }
+
+        public void RemoveTask(int index)
+        {
+            items.RemoveAt(index);
+        }
     }
 }

@@ -97,4 +97,19 @@ namespace ToDoApp.Test
             Assert.IsTrue(toDoItem.Done);
         }
     }
+
+    [TestClass]
+    public class タスク削除
+    {
+        [TestMethod]
+        public void タスクを削除できる()
+        {
+            var todo = new ToDo();
+            todo.AddTask("x");
+
+            todo.RemoveTask(0);
+
+            Assert.AreEqual(0, todo.Count);
+        }
+    }
 }
