@@ -93,15 +93,15 @@ namespace ToDoApp.Test
         }
 
         [TestMethod]
-        public void タスクが空ならタスク追加可能()
+        public void タスクが空なら同じ内容のタスクなし()
         {
             var todo = new ToDo();
             todo.AddingTaskContent = "x";
-            Assert.IsTrue(todo.CanAdd);
+            Assert.IsTrue(todo.ContainsSameTask);
         }
 
         [TestMethod]
-        public void 同じ内容のタスクがあれば追加不可()
+        public void 同じ内容のタスクがある()
         {
             var todo = new ToDo();
             todo.AddingTaskContent = "x";
@@ -109,7 +109,7 @@ namespace ToDoApp.Test
 
             todo.AddingTaskContent = "x";
 
-            Assert.IsFalse(todo.CanAdd);
+            Assert.IsFalse(todo.ContainsSameTask);
         }
     }
 

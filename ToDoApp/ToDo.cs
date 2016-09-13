@@ -30,7 +30,7 @@ namespace ToDoApp
         {
         }
 
-        public bool CanAdd
+        public bool ContainsSameTask
         {
             get
             {
