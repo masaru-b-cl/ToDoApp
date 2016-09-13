@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace ToDoApp
 {
-    public class ToDo
+    public class ToDo : IEnumerable<ToDoItem>, IEnumerable
     {
         private List<ToDoItem> items = new List<ToDoItem>();
 
@@ -47,6 +48,16 @@ namespace ToDoApp
         public void RemoveTask(int index)
         {
             items.RemoveAt(index);
+        }
+
+        public IEnumerator<ToDoItem> GetEnumerator()
+        {
+            return items.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
     }
 }

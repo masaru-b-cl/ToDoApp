@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace ToDoApp.Test
 {
@@ -110,6 +112,42 @@ namespace ToDoApp.Test
             todo.RemoveTask(0);
 
             Assert.AreEqual(0, todo.Count);
+        }
+    }
+
+    [TestClass]
+    public class タスク一覧
+    {
+        [TestMethod]
+        public void タスクを列挙できる()
+        {
+            var todo = new ToDo();
+            todo.AddTask("x");
+
+            IEnumerator enumerator = todo.GetEnumerator();
+
+            {
+                Assert.IsTrue(enumerator.MoveNext());
+                var item = (ToDoItem)enumerator.Current;
+                Assert.AreEqual("x", item.Content);
+            }
+
+        }
+
+        [TestMethod]
+        public void タスクを型指定して列挙できる()
+        {
+            var todo = new ToDo();
+            todo.AddTask("x");
+
+            IEnumerator<ToDoItem> enumerator = todo.GetEnumerator();
+
+            {
+                Assert.IsTrue(enumerator.MoveNext());
+                var item = enumerator.Current;
+                Assert.AreEqual("x", item.Content);
+            }
+
         }
     }
 }
