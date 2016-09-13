@@ -34,13 +34,13 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.deleteDataGridViewButtonColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.button2 = new System.Windows.Forms.Button();
+            this.toDoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.doneDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toDoItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.toDoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toDoItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toDoItemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -89,6 +89,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(343, 341);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
@@ -114,6 +115,10 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // toDoBindingSource
+            // 
+            this.toDoBindingSource.DataSource = typeof(ToDoApp.ToDo);
+            // 
             // doneDataGridViewCheckBoxColumn
             // 
             this.doneDataGridViewCheckBoxColumn.DataPropertyName = "Done";
@@ -134,10 +139,6 @@
             // 
             this.toDoItemBindingSource.DataSource = typeof(ToDoApp.ToDoItem);
             // 
-            // toDoBindingSource
-            // 
-            this.toDoBindingSource.DataSource = typeof(ToDoApp.ToDo);
-            // 
             // ToDoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -152,8 +153,8 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.ToDoForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toDoItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toDoItemBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

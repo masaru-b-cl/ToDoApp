@@ -28,7 +28,7 @@ namespace ToDoApp
 
         private void ToDoPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (new[] { nameof(ToDo.Count), nameof(ToDo.DoneCount)}.Contains(e.PropertyName))
+            if (new[] { nameof(ToDo.Count), nameof(ToDo.DoneCount) }.Contains(e.PropertyName))
             {
                 SetTitle();
             }
@@ -95,7 +95,8 @@ namespace ToDoApp
                 case Keys.Space:
                     if (dataGridView1.CurrentCell.ColumnIndex == 0) return;
                     var item = toDo[currentRowIndex];
-                    item.Done = !item.Done;
+                    var done = !item.Done;
+                    dataGridView1[0, currentRowIndex].Value = done;
                     break;
 
                 case Keys.Delete:
@@ -125,6 +126,23 @@ namespace ToDoApp
         {
             toDo.Clear();
             toDoItemBindingSource.ResetBindings(false);
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var taskCell = dataGridView1[1, e.RowIndex];
+            var currentFont = taskCell.InheritedStyle.Font;
+
+            if (toDo[e.RowIndex].Done)
+            {
+                taskCell.Style.Font = new Font(currentFont, currentFont.Style | FontStyle.Strikeout);
+            }
+            else
+            {
+                taskCell.Style.Font = new Font(currentFont, currentFont.Style & ~FontStyle.Strikeout);
+            }
         }
     }
 }
