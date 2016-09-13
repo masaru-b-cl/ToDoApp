@@ -25,6 +25,23 @@ namespace ToDoApp.Test
             int count = todo.Count;
             Assert.AreEqual(1, count);
         }
+
+        [TestMethod]
+        public void タスクを追加したらタスク件数の変更通知が行われる()
+        {
+            var todo = new ToDo();
+            todo.AddingTaskContent = "x";
+
+            var raised = false;
+            todo.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == nameof(todo.Count)) raised = true;
+            };
+
+            todo.AddTask();
+
+            Assert.IsTrue(raised);
+        }
     }
 
     [TestClass]

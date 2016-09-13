@@ -69,6 +69,8 @@ namespace ToDoApp
 
             items.Add(new ToDoItem(AddingTaskContent));
 
+            OnPropertyChanged(nameof(Count));
+
             AddingTaskContent = null;
         }
 
