@@ -58,5 +58,16 @@ namespace ToDoApp
             toDo.AddTask();
             toDoItemBindingSource.ResetBindings(false);
         }
+
+        private void dataGridView1_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentCellAddress.X == 0 && dataGridView1.CurrentCellAddress.Y != -1)
+            {
+                if (dataGridView1.IsCurrentCellDirty)
+                {
+                    dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+        }
     }
 }

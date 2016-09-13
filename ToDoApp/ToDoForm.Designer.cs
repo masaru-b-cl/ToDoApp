@@ -86,6 +86,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(260, 182);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
             // 
             // deleteDataGridViewButtonColumn
             // 
@@ -102,7 +103,6 @@
             this.doneDataGridViewCheckBoxColumn.DataPropertyName = "Done";
             this.doneDataGridViewCheckBoxColumn.HeaderText = "";
             this.doneDataGridViewCheckBoxColumn.Name = "doneDataGridViewCheckBoxColumn";
-            this.doneDataGridViewCheckBoxColumn.ReadOnly = true;
             this.doneDataGridViewCheckBoxColumn.Width = 60;
             // 
             // contentDataGridViewTextBoxColumn
