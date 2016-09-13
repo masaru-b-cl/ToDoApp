@@ -85,6 +85,8 @@ namespace ToDoApp
         public void RemoveTask(int index)
         {
             items.RemoveAt(index);
+
+            OnPropertyChanged(nameof(Count));
         }
 
         public IEnumerator<ToDoItem> GetEnumerator()

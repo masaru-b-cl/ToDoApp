@@ -42,6 +42,24 @@ namespace ToDoApp.Test
 
             Assert.IsTrue(raised);
         }
+
+        [TestMethod]
+        public void タスクを削除したらタスク件数の変更通知が行われる()
+        {
+            var todo = new ToDo();
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
+
+            var raised = false;
+            todo.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == nameof(todo.Count)) raised = true;
+            };
+
+            todo.RemoveTask(0);
+
+            Assert.IsTrue(raised);
+        }
     }
 
     [TestClass]
