@@ -30,11 +30,23 @@ namespace ToDoApp
         {
         }
 
-        public void AddTask(string content)
+        public bool CanAdd
         {
-            if (string.IsNullOrWhiteSpace(content)) throw new ArgumentException("not allow empty or whitespace.", nameof(content));
+            get
+            {
+                return !items.Any(item => item.Content == AddingTaskContent);
+            }
+        }
 
-            items.Add(new ToDoItem(content));
+        public string AddingTaskContent { get; set; }
+
+        public void AddTask()
+        {
+            if (string.IsNullOrWhiteSpace(AddingTaskContent)) throw new InvalidOperationException($"{nameof(AddingTaskContent)} is not allow empty.");
+
+            items.Add(new ToDoItem(AddingTaskContent));
+
+            AddingTaskContent = null;
         }
 
         public ToDoItem this[int index]

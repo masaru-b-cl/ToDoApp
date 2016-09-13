@@ -20,7 +20,8 @@ namespace ToDoApp.Test
         public void タスクを追加したら1件()
         {
             var todo = new ToDo();
-            todo.AddTask("x");
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
             int count = todo.Count;
             Assert.AreEqual(1, count);
         }
@@ -33,7 +34,8 @@ namespace ToDoApp.Test
         public void 完了タスクがなければ0件()
         {
             var todo = new ToDo();
-            todo.AddTask("x");
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
             int doneCount = todo.DoneCount;
             Assert.AreEqual(0, doneCount);
         }
@@ -42,7 +44,8 @@ namespace ToDoApp.Test
         public void 完了タスクがあればその件数()
         {
             var todo = new ToDo();
-            todo.AddTask("x");
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
             todo[0].Done = true;
             int doneCount = todo.DoneCount;
             Assert.AreEqual(1, doneCount);
@@ -56,7 +59,8 @@ namespace ToDoApp.Test
         public void タスク内容を指定してタスクが追加できる()
         {
             var todo = new ToDo();
-            todo.AddTask("x");
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
             ToDoItem toDoItem = todo[0];
             string content = toDoItem.Content;
             Assert.AreEqual("x", content);
@@ -68,13 +72,44 @@ namespace ToDoApp.Test
             try
             {
                 var todo = new ToDo();
-                todo.AddTask("");
+                todo.AddingTaskContent = "";
+                todo.AddTask();
 
                 Assert.Fail();
             }
-            catch (ArgumentException)
+            catch (InvalidOperationException)
             {
             }
+        }
+
+        [TestMethod]
+        public void タスク追加後は追加中タスク内容をクリアする()
+        {
+            var todo = new ToDo();
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
+
+            Assert.IsNull(todo.AddingTaskContent);
+        }
+
+        [TestMethod]
+        public void タスクが空ならタスク追加可能()
+        {
+            var todo = new ToDo();
+            todo.AddingTaskContent = "x";
+            Assert.IsTrue(todo.CanAdd);
+        }
+
+        [TestMethod]
+        public void 同じ内容のタスクがあれば追加不可()
+        {
+            var todo = new ToDo();
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
+
+            todo.AddingTaskContent = "x";
+
+            Assert.IsFalse(todo.CanAdd);
         }
     }
 
@@ -85,7 +120,8 @@ namespace ToDoApp.Test
         public void 追加直後のタスクは未完了()
         {
             var todo = new ToDo();
-            todo.AddTask("x");
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
             ToDoItem toDoItem = todo[0];
             bool done = toDoItem.Done;
             Assert.AreEqual(false, done);
@@ -107,7 +143,8 @@ namespace ToDoApp.Test
         public void タスクを削除できる()
         {
             var todo = new ToDo();
-            todo.AddTask("x");
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
 
             todo.RemoveTask(0);
 
@@ -122,7 +159,8 @@ namespace ToDoApp.Test
         public void タスクを列挙できる()
         {
             var todo = new ToDo();
-            todo.AddTask("x");
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
 
             IEnumerator enumerator = todo.GetEnumerator();
 
@@ -138,7 +176,8 @@ namespace ToDoApp.Test
         public void タスクを型指定して列挙できる()
         {
             var todo = new ToDo();
-            todo.AddTask("x");
+            todo.AddingTaskContent = "x";
+            todo.AddTask();
 
             IEnumerator<ToDoItem> enumerator = todo.GetEnumerator();
 
