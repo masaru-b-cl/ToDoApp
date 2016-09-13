@@ -36,6 +36,13 @@ namespace ToDoApp
         public ToDo()
         {
         }
+        public bool CanAdd
+        {
+            get
+            {
+                return !string.IsNullOrWhiteSpace(addingTaskContent);
+            }
+        }
 
         public bool ContainsSameTask
         {
@@ -46,6 +53,7 @@ namespace ToDoApp
         }
 
         private string addingTaskContent;
+
         public string AddingTaskContent
         {
             get
@@ -54,7 +62,13 @@ namespace ToDoApp
             }
             set
             {
-                addingTaskContent = value;
+                if (addingTaskContent != value)
+                {
+                    addingTaskContent = value;
+
+                    OnPropertyChanged(nameof(AddingTaskContent));
+                    OnPropertyChanged(nameof(CanAdd));
+                }
             }
         }
 
@@ -68,7 +82,7 @@ namespace ToDoApp
 
         public void AddTask()
         {
-            if (string.IsNullOrWhiteSpace(AddingTaskContent)) throw new InvalidOperationException($"{nameof(AddingTaskContent)} is not allow empty.");
+            if (!CanAdd) return;
 
             var toDoItem = new ToDoItem(AddingTaskContent);
 

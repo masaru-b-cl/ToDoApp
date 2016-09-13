@@ -175,17 +175,14 @@ namespace ToDoApp.Test
         [TestMethod]
         public void タスク内容が空は追加できない()
         {
-            try
-            {
-                var todo = new ToDo();
-                todo.AddingTaskContent = "";
-                todo.AddTask();
+            var todo = new ToDo();
+            todo.AddingTaskContent = "";
 
-                Assert.Fail();
-            }
-            catch (InvalidOperationException)
-            {
-            }
+            Assert.IsFalse(todo.CanAdd);
+
+            todo.AddTask();
+
+            Assert.AreEqual(0, todo.Count);
         }
 
         [TestMethod]
@@ -378,6 +375,46 @@ namespace ToDoApp.Test
             };
 
             todo.Clear();
+
+            Assert.IsTrue(raised);
+        }
+    }
+
+    [TestClass]
+    public class タスク入力内容
+    {
+        [TestMethod]
+        public void タスク入力内容の変更通知が行われる()
+        {
+            var todo = new ToDo();
+
+            var raised = false;
+            todo.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == nameof(todo.AddingTaskContent)) raised = true;
+            };
+
+            todo.AddingTaskContent = "x";
+
+            Assert.IsTrue(raised);
+        }
+    }
+
+    [TestClass]
+    public class タスク入力可否
+    {
+        [TestMethod]
+        public void タスク入力内容を変更するとタスク入力可否の変更通知が行われる()
+        {
+            var todo = new ToDo();
+
+            var raised = false;
+            todo.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == nameof(todo.CanAdd)) raised = true;
+            };
+
+            todo.AddingTaskContent = "x";
 
             Assert.IsTrue(raised);
         }
