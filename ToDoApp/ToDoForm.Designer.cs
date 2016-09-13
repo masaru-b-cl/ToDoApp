@@ -29,11 +29,30 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.toDoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.toDoBindingSource)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // toDoBindingSource
+            // 
+            this.toDoBindingSource.DataSource = typeof(ToDoApp.ToDo);
+            // 
+            // ToDoForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "ToDoForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.ToDoForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.toDoBindingSource)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.BindingSource toDoBindingSource;
     }
 }
 
