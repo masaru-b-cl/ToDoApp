@@ -6,11 +6,11 @@ using System.ComponentModel;
 
 namespace ToDoApp
 {
-    public class ToDo : IEnumerable<ToDoItem>, IEnumerable, INotifyPropertyChanged
+    public class ToDo : INotifyPropertyChanged
     {
         private List<ToDoItem> items = new List<ToDoItem>();
 
-        public IReadOnlyList<ToDoItem> Items
+        public IEnumerable<ToDoItem> Items
         {
             get
             {
@@ -132,16 +132,6 @@ namespace ToDoApp
             OnPropertyChanged(nameof(Count));
             OnPropertyChanged(nameof(DoneCount));
             OnPropertyChanged(nameof(CanClear));
-        }
-
-        public IEnumerator<ToDoItem> GetEnumerator()
-        {
-            return items.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
         }
 
         public bool CanClear

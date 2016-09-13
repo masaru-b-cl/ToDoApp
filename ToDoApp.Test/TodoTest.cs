@@ -259,30 +259,13 @@ namespace ToDoApp.Test
     public class タスク一覧
     {
         [TestMethod]
-        public void タスクを列挙できる()
-        {
-            var todo = new ToDo();
-            todo.AddingTaskContent = "x";
-            todo.AddTask();
-
-            IEnumerator enumerator = todo.GetEnumerator();
-
-            {
-                Assert.IsTrue(enumerator.MoveNext());
-                var item = (ToDoItem)enumerator.Current;
-                Assert.AreEqual("x", item.Content);
-            }
-
-        }
-
-        [TestMethod]
         public void タスクを型指定して列挙できる()
         {
             var todo = new ToDo();
             todo.AddingTaskContent = "x";
             todo.AddTask();
 
-            IEnumerator<ToDoItem> enumerator = todo.GetEnumerator();
+            IEnumerator<ToDoItem> enumerator = todo.Items.GetEnumerator();
 
             {
                 Assert.IsTrue(enumerator.MoveNext());
