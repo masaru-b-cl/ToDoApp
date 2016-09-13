@@ -89,11 +89,17 @@ namespace ToDoApp
         {
             if (dataGridView1.RowCount == 0) return;
 
+            var currentRowIndex = dataGridView1.CurrentRow.Index;
             switch (e.KeyCode)
             {
                 case Keys.Space:
-                    var item = toDo[dataGridView1.CurrentRow.Index];
+                    if (dataGridView1.CurrentCell.ColumnIndex == 0) return;
+                    var item = toDo[currentRowIndex];
                     item.Done = !item.Done;
+                    break;
+
+                case Keys.Delete:
+                    RemoveTask(currentRowIndex);
                     break;
 
                 default:
@@ -106,7 +112,12 @@ namespace ToDoApp
             if (e.RowIndex < 0) return;
             if (e.ColumnIndex != 2) return;
 
-            toDo.RemoveTask(e.RowIndex);
+            RemoveTask(e.RowIndex);
+        }
+
+        private void RemoveTask(int index)
+        {
+            toDo.RemoveTask(index);
             toDoItemBindingSource.ResetBindings(false);
         }
     }
