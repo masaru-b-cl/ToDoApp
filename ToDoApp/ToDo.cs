@@ -2,13 +2,15 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
+using System.ComponentModel;
 
 namespace ToDoApp
 {
-    public class ToDo : IEnumerable<ToDoItem>, IEnumerable
+    public class ToDo : IEnumerable<ToDoItem>, IEnumerable, INotifyPropertyChanged
     {
         private List<ToDoItem> items = new List<ToDoItem>();
 
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public int Count
         {
@@ -38,7 +40,28 @@ namespace ToDoApp
             }
         }
 
-        public string AddingTaskContent { get; set; }
+        private string addingTaskContent;
+        public string AddingTaskContent
+        {
+            get
+            {
+                return addingTaskContent;
+            }
+            set
+            {
+                if (addingTaskContent != value)
+                {
+                    addingTaskContent = value;
+
+                    OnPropertyChanged(nameof(ToDo.ContainsSameTask));
+                }
+            }
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public void AddTask()
         {
