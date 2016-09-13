@@ -200,7 +200,7 @@ namespace ToDoApp.Test
         {
             var todo = new ToDo();
             todo.AddingTaskContent = "x";
-            Assert.IsTrue(todo.ContainsSameTask);
+            Assert.IsFalse(todo.ContainsSameTask);
         }
 
         [TestMethod]
@@ -212,7 +212,7 @@ namespace ToDoApp.Test
 
             todo.AddingTaskContent = "x";
 
-            Assert.IsFalse(todo.ContainsSameTask);
+            Assert.IsTrue(todo.ContainsSameTask);
         }
     }
 

@@ -56,7 +56,7 @@ namespace ToDoApp
         {
             get
             {
-                return !items.Any(item => item.Content == AddingTaskContent);
+                return items.Any(item => item.Content == AddingTaskContent);
             }
         }
 
