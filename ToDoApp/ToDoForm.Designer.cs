@@ -88,6 +88,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(260, 182);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
             // deleteDataGridViewButtonColumn
             // 

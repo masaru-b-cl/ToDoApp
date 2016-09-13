@@ -84,5 +84,21 @@ namespace ToDoApp
             AddTask();
 
         }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (dataGridView1.RowCount == 0) return;
+
+            switch (e.KeyCode)
+            {
+                case Keys.Space:
+                    var item = (ToDoItem)toDoItemBindingSource.Current;
+                    item.Done = !item.Done;
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }
