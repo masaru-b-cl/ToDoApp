@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMainView.cs" />
+    <Compile Include="MainPresenter.cs" />
     <Compile Include="ToDoForm.cs">
       <SubType>Form</SubType>
     </Compile>
