@@ -17,6 +17,10 @@ namespace ToDoFormApp
             this.model = model;
 
             this.model.PropertyChanged += ModelPropertyChanged;
+            this.model.CollectionChanged += (sender, e) =>
+            {
+                view.RefreshToDoItems(new BindingList<ToDoItem>(this.model.Items.ToArray()));
+            };
         }
 
         private void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)

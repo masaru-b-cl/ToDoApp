@@ -58,11 +58,15 @@ namespace ToDoFormApp
         {
             button2.Enabled = value;
         }
+        
+        public void RefreshToDoItems(BindingList<ToDoItem> toDoItems)
+        {
+            dataGridView1.DataSource = toDoItems;
+        }
 
         private void ToDoForm_Load(object sender, EventArgs e)
         {
             toDoBindingSource.DataSource = toDo;
-            toDoItemBindingSource.DataSource = toDo.Items;
 
             presenter.ClearTasks();
             presenter.SetAddingTaskContent(null);
@@ -83,7 +87,6 @@ namespace ToDoFormApp
         private void AddTask()
         {
             presenter.AddTask();
-            toDoItemBindingSource.ResetBindings(false);
 
             textBox1.Focus();
         }

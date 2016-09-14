@@ -3,12 +3,14 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
 using System.ComponentModel;
+using System.Collections.Specialized;
+using System.Collections.ObjectModel;
 
 namespace ToDoModel
 {
-    public class ToDo : INotifyPropertyChanged
+    public class ToDo : INotifyPropertyChanged, INotifyCollectionChanged
     {
-        private List<ToDoItem> items = new List<ToDoItem>();
+        private ObservableCollection<ToDoItem> items = new ObservableCollection<ToDoItem>();
 
         public IReadOnlyList<ToDoItem> Items
         {
@@ -19,6 +21,7 @@ namespace ToDoModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         private void OnPropertyChanged(string propertyName)
         {
@@ -43,7 +46,14 @@ namespace ToDoModel
 
         public ToDo()
         {
+            this.items.CollectionChanged += ItemsCollectionChanged;
         }
+
+        private void ItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            CollectionChanged?.Invoke(this, e);
+        }
+
         public bool CanAdd
         {
             get

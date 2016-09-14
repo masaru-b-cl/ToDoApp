@@ -1,4 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.ComponentModel;
+using System.Windows.Forms;
+using ToDoModel;
 
 namespace ToDoFormApp
 {
@@ -12,5 +15,6 @@ namespace ToDoFormApp
 
         DialogResult ShowAddingConfirmationDialog();
         void SetCanClear(bool v);
+        void RefreshToDoItems(BindingList<ToDoItem> toDoItems);
     }
 }

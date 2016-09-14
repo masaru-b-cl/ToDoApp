@@ -4,6 +4,7 @@ using Moq;
 
 using ToDoModel;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace ToDoFormApp.Test
 {
@@ -62,6 +63,8 @@ namespace ToDoFormApp.Test
             presenter.AddTask();
 
             Assert.AreEqual("x", model.Items[0].Content);
+
+            mock.Verify(v => v.RefreshToDoItems(It.IsAny<BindingList<ToDoItem>>()));
         }
 
         [TestMethod]
