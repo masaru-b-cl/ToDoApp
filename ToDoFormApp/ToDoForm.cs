@@ -44,12 +44,23 @@ namespace ToDoFormApp
                 );
         }
 
+        public void SetAddingTaskContent(string value)
+        {
+            textBox1.Text = value;
+        }
+
+        public void SetCanAdd(bool value)
+        {
+            button1.Enabled = value;
+        }
+
         private void ToDoForm_Load(object sender, EventArgs e)
         {
             toDoBindingSource.DataSource = toDo;
             toDoItemBindingSource.DataSource = toDo.Items;
 
             this.toDo.Clear();
+            this.presenter.AddingTaskContent = null;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -142,6 +153,11 @@ namespace ToDoFormApp
             {
                 taskCell.Style.Font = new Font(currentFont, currentFont.Style & ~FontStyle.Strikeout);
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            presenter.AddingTaskContent = textBox1.Text;
         }
     }
 }

@@ -32,6 +32,7 @@ namespace ToDoFormApp
             set
             {
                 model.AddingTaskContent = value;
+                view.SetCanAdd(model.CanAdd);
             }
         }
 
@@ -46,6 +47,8 @@ namespace ToDoFormApp
             }
 
             model.AddTask();
+
+            view.SetAddingTaskContent(model.AddingTaskContent);
         }
     }
 }

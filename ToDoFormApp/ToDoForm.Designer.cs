@@ -30,16 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.toDoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.deleteDataGridViewButtonColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.button2 = new System.Windows.Forms.Button();
-            this.toDoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.doneDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deleteDataGridViewButtonColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.toDoItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.toDoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDoItemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,17 +47,20 @@
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.toDoBindingSource, "AddingTaskContent", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox1.Location = new System.Drawing.Point(12, 12);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(293, 19);
             this.textBox1.TabIndex = 0;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            // 
+            // toDoBindingSource
+            // 
+            this.toDoBindingSource.DataSource = typeof(ToDoModel.ToDo);
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.toDoBindingSource, "CanAdd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.button1.Location = new System.Drawing.Point(311, 10);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(44, 23);
@@ -93,32 +96,6 @@
             this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
-            // deleteDataGridViewButtonColumn
-            // 
-            this.deleteDataGridViewButtonColumn.HeaderText = "";
-            this.deleteDataGridViewButtonColumn.Name = "deleteDataGridViewButtonColumn";
-            this.deleteDataGridViewButtonColumn.ReadOnly = true;
-            this.deleteDataGridViewButtonColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.deleteDataGridViewButtonColumn.Text = "削除";
-            this.deleteDataGridViewButtonColumn.UseColumnTextForButtonValue = true;
-            this.deleteDataGridViewButtonColumn.Width = 60;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.toDoBindingSource, "CanClear", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.button2.Location = new System.Drawing.Point(13, 387);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(46, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "クリア";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // toDoBindingSource
-            // 
-            this.toDoBindingSource.DataSource = typeof(ToDoModel.ToDo);
-            // 
             // doneDataGridViewCheckBoxColumn
             // 
             this.doneDataGridViewCheckBoxColumn.DataPropertyName = "Done";
@@ -135,9 +112,31 @@
             this.contentDataGridViewTextBoxColumn.ReadOnly = true;
             this.contentDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // deleteDataGridViewButtonColumn
+            // 
+            this.deleteDataGridViewButtonColumn.HeaderText = "";
+            this.deleteDataGridViewButtonColumn.Name = "deleteDataGridViewButtonColumn";
+            this.deleteDataGridViewButtonColumn.ReadOnly = true;
+            this.deleteDataGridViewButtonColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.deleteDataGridViewButtonColumn.Text = "削除";
+            this.deleteDataGridViewButtonColumn.UseColumnTextForButtonValue = true;
+            this.deleteDataGridViewButtonColumn.Width = 60;
+            // 
             // toDoItemBindingSource
             // 
             this.toDoItemBindingSource.DataSource = typeof(ToDoModel.ToDoItem);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button2.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.toDoBindingSource, "CanClear", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.button2.Location = new System.Drawing.Point(13, 387);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(46, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "クリア";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // ToDoForm
             // 
@@ -152,8 +151,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.ToDoForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDoItemBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

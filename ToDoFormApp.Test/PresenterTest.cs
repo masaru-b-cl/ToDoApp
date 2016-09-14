@@ -88,4 +88,30 @@ namespace ToDoFormApp.Test
             Assert.AreEqual("x", model.Items[1].Content);
         }
     }
+
+    [TestClass]
+    public class タスク追加可否
+    {
+        [TestMethod]
+        public void Modelのタスク追加可否を画面に伝える()
+        {
+            var canAdd = false;
+            var mock = new Mock<IMainView>();
+            mock.Setup(v => v.SetCanAdd(It.IsAny<bool>())).Callback<bool>(value => 
+            {
+                canAdd = value;
+            });
+            IMainView view = mock.Object;
+
+            var model = new ToDo();
+
+            var presenter = new MainPresenter(view, model);
+
+            Assert.IsFalse(canAdd);
+
+            presenter.AddingTaskContent = "x";
+
+            Assert.IsTrue(canAdd);
+        }
+    }
 }
