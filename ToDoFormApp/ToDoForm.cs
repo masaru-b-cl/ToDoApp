@@ -12,9 +12,10 @@ using ToDoModel;
 
 namespace ToDoFormApp
 {
-    public partial class ToDoForm : Form
+    public partial class ToDoForm : Form, IMainView
     {
         private readonly ToDo toDo;
+        private readonly MainPresenter presenter;
 
         public ToDoForm()
         {
@@ -25,20 +26,12 @@ namespace ToDoFormApp
         {
             this.toDo = toDo;
 
-            toDo.PropertyChanged += ToDoPropertyChanged;
+            this.presenter = new MainPresenter(this, this.toDo);
         }
 
-        private void ToDoPropertyChanged(object sender, PropertyChangedEventArgs e)
+        public void SetTitle(int count, int doneCount)
         {
-            if (new[] { nameof(ToDo.Count), nameof(ToDo.DoneCount) }.Contains(e.PropertyName))
-            {
-                SetTitle();
-            }
-        }
-
-        private void SetTitle()
-        {
-            Text = $"ToDoリスト ( {toDo.DoneCount} / {toDo.Count} )";
+            Text = $"ToDoリスト ( {doneCount} / {count} )";
         }
 
         private void ToDoForm_Load(object sender, EventArgs e)
@@ -46,7 +39,7 @@ namespace ToDoFormApp
             toDoBindingSource.DataSource = toDo;
             toDoItemBindingSource.DataSource = toDo.Items;
 
-            SetTitle();
+            this.toDo.Clear();
         }
 
         private void button1_Click(object sender, EventArgs e)

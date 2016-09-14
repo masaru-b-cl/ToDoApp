@@ -1,6 +1,7 @@
 ﻿namespace ToDoFormApp
 {
-    public class IMainView
+    public interface IMainView
     {
+        void SetTitle(int count, int doneCount);
     }
 }
