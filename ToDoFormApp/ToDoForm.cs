@@ -133,7 +133,7 @@ namespace ToDoFormApp
 
         private void RemoveTask(int index)
         {
-            toDo.RemoveTask(index);
+            presenter.RemoveTask(index);
             toDoItemBindingSource.ResetBindings(false);
         }
 

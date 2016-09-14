@@ -155,4 +155,33 @@ namespace ToDoFormApp.Test
             Assert.IsTrue(canClear);
         }
     }
+
+    [TestClass]
+    public class タスク削除
+    {
+        [TestMethod]
+        public void タスクを削除する()
+        {
+            var canAdd = false;
+            var mock = new Mock<IMainView>();
+            mock.Setup(v => v.SetCanAdd(It.IsAny<bool>())).Callback<bool>(value =>
+            {
+                canAdd = value;
+            });
+            IMainView view = mock.Object;
+
+            var model = new ToDo();
+
+            var presenter = new MainPresenter(view, model);
+
+            presenter.SetAddingTaskContent("x");
+            presenter.AddTask();
+
+            Assert.AreEqual(1, model.Count);
+
+            presenter.RemoveTask(0);
+
+            Assert.AreEqual(0, model.Count);
+        }
+    }
 }

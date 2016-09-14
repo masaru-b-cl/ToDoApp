@@ -64,5 +64,10 @@ namespace ToDoFormApp
         {
             model.Clear();
         }
+
+        public void RemoveTask(int index)
+        {
+            model.RemoveTask(index);
+        }
     }
 }
