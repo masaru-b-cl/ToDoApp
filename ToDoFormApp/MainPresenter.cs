@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using ToDoModel;
@@ -15,25 +16,35 @@ namespace ToDoFormApp
             this.view = view;
             this.model = model;
 
-            this.model.PropertyChanged += (sender, e) =>
-            {
-                if (new[] { nameof(ToDo.Count), nameof(ToDo.DoneCount) }.Contains(e.PropertyName))
-                {
-                    this.view.SetTitle(model.Count, model.DoneCount);
-                }
-            };
+            this.model.PropertyChanged += ModelPropertyChanged;
         }
 
-        public string AddingTaskContent {
-            get
+        private void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (new[] { nameof(model.Count), nameof(model.DoneCount) }.Contains(e.PropertyName))
             {
-                return model.AddingTaskContent;
+                view.SetTitle(model.Count, model.DoneCount);
             }
-            set
+
+            if (e.PropertyName == nameof(model.AddingTaskContent))
             {
-                model.AddingTaskContent = value;
+                view.SetAddingTaskContent(model.AddingTaskContent);
+            }
+
+            if (e.PropertyName == nameof(model.CanAdd))
+            {
                 view.SetCanAdd(model.CanAdd);
             }
+
+            if (e.PropertyName == nameof(model.CanClear))
+            {
+                view.SetCanClear(model.CanClear);
+            }
+        }
+
+        public void SetAddingTaskContent(string value)
+        {
+            model.AddingTaskContent = value;
         }
 
         public void AddTask()
@@ -47,8 +58,11 @@ namespace ToDoFormApp
             }
 
             model.AddTask();
+        }
 
-            view.SetAddingTaskContent(model.AddingTaskContent);
+        public void ClearTasks()
+        {
+            model.Clear();
         }
     }
 }

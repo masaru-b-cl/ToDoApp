@@ -11,5 +11,6 @@ namespace ToDoFormApp
         void SetTitle(int count, int doneCount);
 
         DialogResult ShowAddingConfirmationDialog();
+        void SetCanClear(bool v);
     }
 }

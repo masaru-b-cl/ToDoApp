@@ -58,7 +58,7 @@ namespace ToDoFormApp.Test
 
             var presenter = new MainPresenter(view, model);
 
-            presenter.AddingTaskContent = "x";
+            presenter.SetAddingTaskContent("x");
             presenter.AddTask();
 
             Assert.AreEqual("x", model.Items[0].Content);
@@ -77,27 +77,23 @@ namespace ToDoFormApp.Test
 
             var presenter = new MainPresenter(view, model);
 
-            presenter.AddingTaskContent = "x";
+            presenter.SetAddingTaskContent("x");
             presenter.AddTask();
 
-            presenter.AddingTaskContent = "x";
+            presenter.SetAddingTaskContent("x");
             presenter.AddTask();
 
             mock.Verify(v => v.ShowAddingConfirmationDialog());
 
             Assert.AreEqual("x", model.Items[1].Content);
         }
-    }
 
-    [TestClass]
-    public class タスク追加可否
-    {
         [TestMethod]
         public void Modelのタスク追加可否を画面に伝える()
         {
             var canAdd = false;
             var mock = new Mock<IMainView>();
-            mock.Setup(v => v.SetCanAdd(It.IsAny<bool>())).Callback<bool>(value => 
+            mock.Setup(v => v.SetCanAdd(It.IsAny<bool>())).Callback<bool>(value =>
             {
                 canAdd = value;
             });
@@ -109,9 +105,54 @@ namespace ToDoFormApp.Test
 
             Assert.IsFalse(canAdd);
 
-            presenter.AddingTaskContent = "x";
+            presenter.SetAddingTaskContent("x");
 
             Assert.IsTrue(canAdd);
+        }
+    }
+
+    [TestClass]
+    public class タスククリア
+    {
+        [TestMethod]
+        public void タスクをクリアする()
+        {
+            var mock = new Mock<IMainView>();
+
+            IMainView view = mock.Object;
+
+            var model = new ToDo();
+            var presenter = new MainPresenter(view, model);
+
+            presenter.SetAddingTaskContent("x");
+            presenter.AddTask();
+
+            presenter.ClearTasks();
+
+            Assert.AreEqual(0, model.Count);
+        }
+
+        [TestMethod]
+        public void Modelのタスククリア可否を画面に伝える()
+        {
+            var canClear = false;
+            var mock = new Mock<IMainView>();
+            mock.Setup(v => v.SetCanClear(It.IsAny<bool>())).Callback<bool>(value =>
+            {
+                canClear = value;
+            });
+            IMainView view = mock.Object;
+
+            var model = new ToDo();
+
+            var presenter = new MainPresenter(view, model);
+
+            Assert.IsFalse(canClear);
+
+            presenter.SetAddingTaskContent("x");
+            presenter.AddTask();
+
+            Assert.IsTrue(canClear);
         }
     }
 }

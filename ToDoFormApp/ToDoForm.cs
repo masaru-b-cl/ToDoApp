@@ -54,13 +54,18 @@ namespace ToDoFormApp
             button1.Enabled = value;
         }
 
+        public void SetCanClear(bool value)
+        {
+            button2.Enabled = value;
+        }
+
         private void ToDoForm_Load(object sender, EventArgs e)
         {
             toDoBindingSource.DataSource = toDo;
             toDoItemBindingSource.DataSource = toDo.Items;
 
-            this.toDo.Clear();
-            this.presenter.AddingTaskContent = null;
+            presenter.ClearTasks();
+            presenter.SetAddingTaskContent(null);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -134,7 +139,7 @@ namespace ToDoFormApp
 
         private void button2_Click(object sender, EventArgs e)
         {
-            toDo.Clear();
+            presenter.ClearTasks();
             toDoItemBindingSource.ResetBindings(false);
         }
 
@@ -157,7 +162,7 @@ namespace ToDoFormApp
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            presenter.AddingTaskContent = textBox1.Text;
+            presenter.SetAddingTaskContent(textBox1.Text);
         }
     }
 }
