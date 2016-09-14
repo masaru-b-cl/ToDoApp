@@ -66,8 +66,6 @@ namespace ToDoFormApp
 
         private void ToDoForm_Load(object sender, EventArgs e)
         {
-            toDoBindingSource.DataSource = toDo;
-
             presenter.ClearTasks();
             presenter.SetAddingTaskContent(null);
         }
@@ -112,9 +110,8 @@ namespace ToDoFormApp
             {
                 case Keys.Space:
                     if (dataGridView1.CurrentCell.ColumnIndex == 0) return;
-                    var item = toDo.Items[currentRowIndex];
-                    var done = !item.Done;
-                    dataGridView1[0, currentRowIndex].Value = done;
+                    var done = (bool)dataGridView1[0, currentRowIndex].Value;
+                    dataGridView1[0, currentRowIndex].Value = !done;
                     break;
 
                 case Keys.Delete:
@@ -137,13 +134,11 @@ namespace ToDoFormApp
         private void RemoveTask(int index)
         {
             presenter.RemoveTask(index);
-            toDoItemBindingSource.ResetBindings(false);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             presenter.ClearTasks();
-            toDoItemBindingSource.ResetBindings(false);
         }
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -153,7 +148,11 @@ namespace ToDoFormApp
             var taskCell = dataGridView1[1, e.RowIndex];
             var currentFont = taskCell.InheritedStyle.Font;
 
-            if (toDo.Items[e.RowIndex].Done)
+            var done = (bool)dataGridView1[0, e.RowIndex].Value;
+
+            presenter.SetDone(e.RowIndex, done);
+
+            if (done)
             {
                 taskCell.Style.Font = new Font(currentFont, currentFont.Style | FontStyle.Strikeout);
             }

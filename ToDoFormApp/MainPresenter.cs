@@ -73,5 +73,10 @@ namespace ToDoFormApp
         {
             model.RemoveTask(index);
         }
+
+        public void SetDone(int index, bool value)
+        {
+            model.Items[index].Done = value;
+        }
     }
 }

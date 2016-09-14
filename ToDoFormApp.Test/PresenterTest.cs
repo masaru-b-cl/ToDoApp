@@ -187,4 +187,29 @@ namespace ToDoFormApp.Test
             Assert.AreEqual(0, model.Count);
         }
     }
+
+    [TestClass]
+    public class タスク完了状態
+    {
+        [TestMethod]
+        public void タスク完了状態を変更する()
+        {
+            var canClear = false;
+            var mock = new Mock<IMainView>();
+            IMainView view = mock.Object;
+
+            var model = new ToDo();
+
+            var presenter = new MainPresenter(view, model);
+
+
+            presenter.SetAddingTaskContent("x");
+            presenter.AddTask();
+
+            presenter.SetDone(0, true);
+
+            Assert.IsTrue(model.Items[0].Done);
+
+        }
+    }
 }
