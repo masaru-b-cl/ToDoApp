@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
 using ToDoModel;
-
+using System.Windows.Forms;
 
 namespace ToDoFormApp.Test
 {
@@ -62,6 +62,30 @@ namespace ToDoFormApp.Test
             presenter.AddTask();
 
             Assert.AreEqual("x", model.Items[0].Content);
+        }
+
+        [TestMethod]
+        public void 重複タスクを追加しようとしたらVに確認メッセージを表示する()
+        {
+            var mock = new Mock<IMainView>();
+
+            mock.Setup(v => v.ShowAddingConfirmationDialog()).Returns(DialogResult.Yes);
+
+            IMainView view = mock.Object;
+
+            var model = new ToDo();
+
+            var presenter = new MainPresenter(view, model);
+
+            presenter.AddingTaskContent = "x";
+            presenter.AddTask();
+
+            presenter.AddingTaskContent = "x";
+            presenter.AddTask();
+
+            mock.Verify(v => v.ShowAddingConfirmationDialog());
+
+            Assert.AreEqual("x", model.Items[1].Content);
         }
     }
 }

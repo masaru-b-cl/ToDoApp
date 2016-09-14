@@ -34,6 +34,16 @@ namespace ToDoFormApp
             Text = $"ToDoリスト ( {doneCount} / {count} )";
         }
 
+        public DialogResult ShowAddingConfirmationDialog()
+        {
+            return MessageBox.Show("同じタスクが既に登録されています。本当に追加しますか？",
+                "ToDoリスト",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2
+                );
+        }
+
         private void ToDoForm_Load(object sender, EventArgs e)
         {
             toDoBindingSource.DataSource = toDo;
@@ -56,11 +66,6 @@ namespace ToDoFormApp
 
         private void AddTask()
         {
-            if (toDo.ContainsSameTask)
-            {
-                if (MessageBox.Show("同じタスクが既に登録されています。本当に追加しますか？", "ToDoリスト", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
-            }
-
             presenter.AddTask();
             toDoItemBindingSource.ResetBindings(false);
 

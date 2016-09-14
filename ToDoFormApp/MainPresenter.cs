@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Forms;
 using ToDoModel;
 
 namespace ToDoFormApp
@@ -36,6 +37,14 @@ namespace ToDoFormApp
 
         public void AddTask()
         {
+            if (model.ContainsSameTask)
+            {
+                if (view.ShowAddingConfirmationDialog() != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
+
             model.AddTask();
         }
     }
