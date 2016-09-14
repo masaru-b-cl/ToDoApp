@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ToDoModel;
 
 namespace ToDoFormApp
@@ -20,6 +21,22 @@ namespace ToDoFormApp
                     this.view.SetTitle(model.Count, model.DoneCount);
                 }
             };
+        }
+
+        public string AddingTaskContent {
+            get
+            {
+                return model.AddingTaskContent;
+            }
+            set
+            {
+                model.AddingTaskContent = value;
+            }
+        }
+
+        public void AddTask()
+        {
+            model.AddTask();
         }
     }
 }

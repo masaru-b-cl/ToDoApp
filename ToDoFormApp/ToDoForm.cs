@@ -61,7 +61,7 @@ namespace ToDoFormApp
                 if (MessageBox.Show("同じタスクが既に登録されています。本当に追加しますか？", "ToDoリスト", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
             }
 
-            toDo.AddTask();
+            presenter.AddTask();
             toDoItemBindingSource.ResetBindings(false);
 
             textBox1.Focus();

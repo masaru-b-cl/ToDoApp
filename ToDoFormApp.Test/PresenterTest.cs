@@ -44,4 +44,24 @@ namespace ToDoFormApp.Test
             mock.Verify(v => v.SetTitle(1, 1));
         }
     }
+
+    [TestClass]
+    public class タスク追加
+    {
+        [TestMethod]
+        public void タスク内容を指定してタスクを追加できる()
+        {
+            var mock = new Mock<IMainView>();
+            IMainView view = mock.Object;
+
+            var model = new ToDo();
+
+            var presenter = new MainPresenter(view, model);
+
+            presenter.AddingTaskContent = "x";
+            presenter.AddTask();
+
+            Assert.AreEqual("x", model.Items[0].Content);
+        }
+    }
 }
