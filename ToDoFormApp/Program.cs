@@ -17,7 +17,11 @@ namespace ToDoFormApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ToDoForm(new ToDo()));
+            var model = new ToDo();
+            var presenter = new MainPresenter(model);
+            var form = new ToDoForm(presenter);
+            presenter.SetView(form);
+            Application.Run(form);
         }
     }
 }

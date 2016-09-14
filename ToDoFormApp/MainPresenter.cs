@@ -11,16 +11,26 @@ namespace ToDoFormApp
         private ToDo model;
         private IMainView view;
 
-        public MainPresenter(IMainView view, ToDo model)
+        public MainPresenter(ToDo model)
         {
-            this.view = view;
             this.model = model;
-
             this.model.PropertyChanged += ModelPropertyChanged;
             this.model.CollectionChanged += (sender, e) =>
             {
                 view.RefreshToDoItems(new BindingList<ToDoItem>(this.model.Items.ToArray()));
             };
+        }
+
+        public void SetView(IMainView view)
+        {
+            this.view = view;
+        }
+
+        public MainPresenter(IMainView view, ToDo model) : this(model)
+        {
+            this.view = view;
+            this.model = model;
+
         }
 
         private void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)

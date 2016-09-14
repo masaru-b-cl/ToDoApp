@@ -194,7 +194,6 @@ namespace ToDoFormApp.Test
         [TestMethod]
         public void タスク完了状態を変更する()
         {
-            var canClear = false;
             var mock = new Mock<IMainView>();
             IMainView view = mock.Object;
 

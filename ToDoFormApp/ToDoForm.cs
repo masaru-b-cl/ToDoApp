@@ -14,7 +14,6 @@ namespace ToDoFormApp
 {
     public partial class ToDoForm : Form, IMainView
     {
-        private readonly ToDo toDo;
         private readonly MainPresenter presenter;
 
         public ToDoForm()
@@ -22,11 +21,9 @@ namespace ToDoFormApp
             InitializeComponent();
         }
 
-        public ToDoForm(ToDo toDo) : this()
+        public ToDoForm(MainPresenter presenter) : this()
         {
-            this.toDo = toDo;
-
-            this.presenter = new MainPresenter(this, this.toDo);
+            this.presenter = presenter;
         }
 
         public void SetTitle(int count, int doneCount)
