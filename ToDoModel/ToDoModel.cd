@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ToDoModel.ToDoItem">
+    <Position X="4.25" Y="1.25" Width="2" />
+    <Members>
+      <Field Name="content" Hidden="true" />
+      <Field Name="done" Hidden="true" />
+      <Method Name="OnPropertyChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABCAAAAQgAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ToDoItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ToDoModel.ToDo">
+    <Position X="1.5" Y="1.25" Width="2.25" />
+    <Members>
+      <Field Name="addingTaskContent" Hidden="true" />
+      <Method Name="ItemPropertyChanged" Hidden="true" />
+      <Method Name="ItemsCollectionChanged" Hidden="true" />
+      <Method Name="OnPropertyChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAABCAAAAQACAgAYAgAgoQAgAAAEAgAABAAAABAAAA=</HashCode>
+      <FileName>ToDo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Yu Gothic UI" Size="9" />
+</ClassDiagram>

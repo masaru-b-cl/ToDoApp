@@ -81,6 +81,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="ToDo.md" />
+    <None Include="ToDoFormApp.cd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

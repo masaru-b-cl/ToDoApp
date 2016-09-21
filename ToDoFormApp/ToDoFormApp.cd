@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ToDoFormApp.ToDoForm">
+    <Position X="0.5" Y="3.75" Width="2.75" />
+    <Members>
+      <Method Name="AddTask" Hidden="true" />
+      <Field Name="button1" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="button2" Hidden="true" />
+      <Method Name="button2_Click" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="contentDataGridViewTextBoxColumn" Hidden="true" />
+      <Field Name="dataGridView1" Hidden="true" />
+      <Method Name="dataGridView1_CellContentClick" Hidden="true" />
+      <Method Name="dataGridView1_CellValueChanged" Hidden="true" />
+      <Method Name="dataGridView1_CurrentCellDirtyStateChanged" Hidden="true" />
+      <Method Name="dataGridView1_KeyDown" Hidden="true" />
+      <Field Name="deleteDataGridViewButtonColumn" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="doneDataGridViewCheckBoxColumn" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Method Name="RemoveTask" Hidden="true" />
+      <Field Name="textBox1" Hidden="true" />
+      <Method Name="textBox1_KeyDown" Hidden="true" />
+      <Method Name="textBox1_TextChanged" Hidden="true" />
+      <Field Name="toDoBindingSource" Hidden="true" />
+      <Method Name="ToDoForm_Load" Hidden="true" />
+      <Field Name="toDoItemBindingSource" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACABCBEACIAAABRAADAAgASIAw4IAAAEGAAAAAgABA=</HashCode>
+      <FileName>ToDoForm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="presenter" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ToDoFormApp.MainPresenter">
+    <Position X="4.5" Y="1" Width="2.5" />
+    <Members>
+      <Method Name="ModelPropertyChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACABCAAAAAAAAAABAAAAAAAACAAAAAQAQAAAAAIAIA=</HashCode>
+      <FileName>MainPresenter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="model" />
+      <Field Name="view" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ToDoModel.ToDo">
+    <Position X="9" Y="1" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="ToDoFormApp.IMainView">
+    <Position X="0.5" Y="1" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAABEAAAAAABAAAAAAAAAIAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>IMainView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Yu Gothic UI" Size="9" />
+</ClassDiagram>

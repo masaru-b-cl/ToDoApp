@@ -55,7 +55,7 @@ namespace ToDoFormApp
         {
             button2.Enabled = value;
         }
-        
+
         public void RefreshToDoItems(BindingList<ToDoItem> toDoItems)
         {
             dataGridView1.DataSource = toDoItems;
